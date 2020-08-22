@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailUser;
 use App\Purchase;
 use App\Product;
 use App\GoogleUpload;
@@ -63,9 +65,9 @@ class PurchaseController extends Controller
         Storage::disk('google')->put('purchase'.$purchase->id.'.xml', $xml);
         $url = $google->generateUrl();
         
+        Mail::to('f.donaadelli@gmail.com')->send(new SendMailUser($url));
         
-        
-        return response()->json(['id' => $product->id], 200);
+        return response()->json([''], 200);
     }
 
     protected function create_file($data){
