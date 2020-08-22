@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dados>
+    <product_id>1</product_id>
+    <quantity_purchased>1</quantity_purchased>
+    <card>
+        <owner>faa</owner>
+        <card_number>554545</card_number>
+        <date_expiration>10/11</date_expiration>
+        <flag>VISA</flag>
+        <cvv>vcc</cvv>
+    </card>
+</dados>
