@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,6 @@ class ProductController extends Controller
     {
         $products = Product::where('qty_stock', '>', 0)
                ->get();
-
         return response()->json(['data' => $products], 200);
     }
 
@@ -29,6 +29,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'amount' => 'required|integer',
+            'qty_stock' => 'required|integer',
+        ]);
+
+        if ($validator->fails()) {
+	    	return response()->json([ 'Erro nos dados enviados'], 400);
+        }
+        
         $product = Product::create([
             'name' => $request->name,
             'amount' => $request->amount,
@@ -45,9 +55,16 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
-    {
-        $product = Product::find($product->id);
+    public function show($product)
+    {   
+        
+        $product = Product::where('id', $product)
+                            ->first();
+        if(empty($product))
+        {
+            return response()->json([ 'Erro nos dados enviados'], 400);
+        }
+
         $last_purchase = Product::find($product->id)->purchases()->orderBy('purchase_date', 'DESC')->first();
 
         return response()->json([
@@ -59,30 +76,20 @@ class ProductController extends Controller
         ], 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $product)
-    {
-        //
-    }
-
+    
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($product)
     {
-        $product = Product::find($product->id);
+        $product = Product::where('id', $product)
+                            ->first();
         if(empty($product))
         {
-            return response()->json(['Erro nos dados enviados'], 400);
+            return response()->json([ 'Erro nos dados enviados'], 400);
         }
         $product->delete();
         return response()->json(['Produto excluído com sucesso'], 200);
