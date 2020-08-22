@@ -12,18 +12,18 @@ class GoogleUpload
     protected $client;
     protected $folder_id;
     protected $service;
-    protected $ClientId     = '974850162182-v3igc16e18olh2lrf9bf545rgcm6apfh.apps.googleusercontent.com';
-    protected $ClientSecret = 'aOhMyKpbwPDf8Z52Br07j23I';
-    protected $refreshToken = '1//04UeInXpil7xcCgYIARAAGAQSNwF-L9IrGHXrfRwFBBdzE9c9XfcEe5gQxsASCwtMfGePMyTTQ4N4R33Fs16S6o2rSvEPJHJyRVk';
+    protected $ClientId;
+    protected $ClientSecret;
+    protected $refreshToken;
 
     public function __construct()
     {
         
         $this->client = new \Google_Client();
         
-        $this->client->setClientId($this->ClientId);
-        $this->client->setClientSecret($this->ClientSecret);
-        $this->client->refreshToken($this->refreshToken);
+        $this->client->setClientId(env('GOOGLE_DRIVE_CLIENT_ID'));
+        $this->client->setClientSecret(env('GOOGLE_DRIVE_CLIENT_SECRET'));
+        $this->client->refreshToken(env('GOOGLE_DRIVE_REFRESH_TOKEN'));
        
         $this->service = new \Google_Service_Drive($this->client);
         // we cache the id to avoid having google creating

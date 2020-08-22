@@ -67,10 +67,10 @@ return [
 
         'google' => [
             'driver' => 'google',
-            'clientId' => '974850162182-v3igc16e18olh2lrf9bf545rgcm6apfh.apps.googleusercontent.com',
-            'clientSecret' => 'aOhMyKpbwPDf8Z52Br07j23I',
-            'refreshToken' => '1//04UeInXpil7xcCgYIARAAGAQSNwF-L9IrGHXrfRwFBBdzE9c9XfcEe5gQxsASCwtMfGePMyTTQ4N4R33Fs16S6o2rSvEPJHJyRVk',
-            'folderId' => '1vuQjByWYQue6V6BT3isYQp6QvWW83L2p',
+            'clientId' => env('GOOGLE_DRIVE_CLIENT_ID'),
+            'clientSecret' => env('GOOGLE_DRIVE_CLIENT_SECRET'),
+            'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN'),
+            'folderId' => env('GOOGLE_DRIVE_FOLDER_ID'),
         ],
 
     ],

@@ -85,7 +85,7 @@ class PurchaseController extends Controller
         
         Mail::to('f.donaadelli@gmail.com')->send(new SendMailUser($url));
         
-        return response()->json([''], 200);
+        return response()->json('enviado', 200);
     }
 
     protected function create_file($data){

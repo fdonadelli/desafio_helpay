@@ -1,4 +1,7 @@
 # desafio_helpay
+<h2> Requisitos </h2>
+- docker
+- conta no Mailtrap.io
 
 <h1> Para iniciar o projeto, os passos são os seguintes:</h1>
 
