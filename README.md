@@ -8,6 +8,7 @@
 
 
 - rodar o comando : docker-compose up -d
+- rodar o comando : docker-compose exec app composer install
 - rodar o comando : docker-compose exec app php artisan key:generate
 - rodar o comando : docker-compose exec app php artisan config:cache
 - rodar o comando : docker-compose exec app php artisan migrate
