@@ -13,7 +13,7 @@
 - rodar o comando : docker-compose exec app php artisan config:cache
 - rodar o comando : docker-compose exec app php artisan migrate
 
-seu projeto deve estar disponivel em http://localhost
+seu projeto deve estar disponivel em http://localhost:8080
 
 
 * edite seu arquivo .env se necessario
